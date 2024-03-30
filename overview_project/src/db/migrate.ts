@@ -3,13 +3,13 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import 'dotenv/config';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import * as schema from './schema/index'
+import * as schema from './schema/index';
 
 const pool = new Pool({
   connectionString: 'postgres://nest_user:nest_password@localhost:5432/nest_db',
 });
 
-const db = drizzle(pool, {schema});
+const db = drizzle(pool, { schema });
 
 async function main() {
   try {
@@ -21,7 +21,6 @@ async function main() {
   }
 }
 
-main().then(()=>{
+main().then(() => {
   pool.end();
-})
-
+});

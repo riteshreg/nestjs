@@ -11,6 +11,6 @@ export class AuthController {
   @Post('login')
   @Public()
   signIn(@Body() signInDto: SignInDto) {
-    return this.authService.validateUser(signInDto.username, signInDto.pass);
+    return this.authService.validateUser(signInDto.email, signInDto.password);
   }
 }

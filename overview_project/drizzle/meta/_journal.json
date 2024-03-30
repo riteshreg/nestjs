@@ -8,6 +8,27 @@
       "when": 1711618462082,
       "tag": "0000_known_magik",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1711688193469,
+      "tag": "0001_swift_white_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1711690643712,
+      "tag": "0002_flat_katie_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1711690671062,
+      "tag": "0003_odd_ben_grimm",
+      "breakpoints": true
     }
   ]
 }

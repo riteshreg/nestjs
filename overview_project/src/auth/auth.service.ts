@@ -5,6 +5,8 @@ import {
 } from '@nestjs/common';
 import { UsersService } from 'src/app/user/user.service';
 import { JwtService } from '@nestjs/jwt';
+import { compareHash } from 'src/lib/hash';
+import { NotMatchException } from 'src/filters/notMatch.exception';
 
 @Injectable()
 export class AuthService {
@@ -13,14 +15,14 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
+  async validateUser(email: string, pass: string): Promise<any> {
+    const user = await this.usersService.findOne({email});
     if (!user) {
       throw new NotFoundException;
     }
 
-    if (user.password !== pass) {
-      throw new  UnauthorizedException;
+    if (!await compareHash(pass, user.password)) {
+      throw new NotMatchException('Password not matches');
     }
 
     const { password, ...payload } = user;

@@ -36,6 +36,8 @@ export class AuthGuard implements CanActivate {
       context.getClass(),
     ]);
 
+
+
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {
@@ -50,6 +52,11 @@ export class AuthGuard implements CanActivate {
       request['user'] = payload;
     } catch {
       throw new UnauthorizedException();
+    }
+
+    // is there is no any required_role than returning true as any one can access these routes
+    if(!required_role){
+      return true;
     }
 
     // returning if role is not matched to required_role

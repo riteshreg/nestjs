@@ -1,5 +1,4 @@
-
-export class SignInDto{
-    username:string;
-    pass:string
+export type SignInDto = {
+  email: string;
+  password: string;
 }
