@@ -13,16 +13,16 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.usersService.findOne({email});
+    const user = await this.usersService.findOne({ email });
     if (!user) {
       throw new NotFoundException;
     }
 
     if (!await compareHash(pass, user.password)) {
-      throw new NotMatchException('Password not matches');
+      throw new NotFoundException();
     }
 
     const { password, ...payload } = user;
